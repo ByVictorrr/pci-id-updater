@@ -7,7 +7,6 @@
 #include <sys/mman.h>
 #include <string.h>
 #include "json.h"
-using namespace std;
 
 static const char options[] = "j:";
 static const char help_msg[] = 
@@ -17,44 +16,40 @@ static const char help_msg[] =
 ;
 
 #define PCI_ID_NAME_MAX 100
+
+// model
 struct pci_id{
-    uint16_t vendor, device, svendor, sdevice;
-    char vendor_name[PCI_ID_NAME_MAX], device_name[PCI_ID_NAME_MAX];
-    char svendor_name[PCI_ID_NAME_MAX], sdevice_name[PCI_ID_NAME_MAX];
-};
-struct pci_id_vendor{
-    uint16_t vendor;
-    char vendor_name[PCI_ID_NAME_MAX];
+    int vendor, device, svendor, sdevice;
+    char *vendor_name, *device_name, *subsystem_name;
 };
 
-struct pci_id_device{
-    uint16_t vendor;
-    char vendor_name[PCI_ID_NAME_MAX];
-};
+// list of maps <ven_id->{dev_id struct}>
+// <dev_id->{subsystem_id struct}
 
 
-class pci_id{
+// map<uint16_t, map<struct pci_id_device, > map 
+class id_map{
     private:
-        uint16_t device;
+        std::map<uint16_t, std::string*> ven_map, dev_map;
+        std::map<std::pair<uint16_t, uint16_t>, std::string*> subsys_map;
+        std::map<uint16_t, uint16_t> ven_to_dev; 
+        std::map<uint16_t, std::pair<uint16_t, uint16_t>> dev_to_sub;
+    public:
+        int insert(struct pci_id *model, char *error)
+        {
+            if(model->vendor > 0xffff || model->vendor < 0){
+                return;
+            }
+            ven_map.insert(std::pair<uint16_t, std::string>(id, name));
 
-        
-        
+        }
+
+
+
 };
 
-map<uint16_t, {}> 
 
 
-
-int get_len_file(const char *file){
-    int len, fd;
-    if((fd=open(file, O_RDONLY)) < 0)
-        return -1;
-    else if((len=lseek(fd, 0, SEEK_END)) < 0)
-        return -1;
-    else if(close(fd) < 0)
-        return -1;
-    return len;  
-}
 
 struct _json_value **parse_json_array_file(const char *json_file, int *arr_len, char *error)
 {
@@ -81,32 +76,24 @@ struct _json_value **parse_json_array_file(const char *json_file, int *arr_len, 
         fprintf(stderr, "Not the correct format");
         return NULL;
     }
+    // close fd and unmmap
     *arr_len = json_data->u.array.length;
     return json_data->u.array.values;
 }
 
-void insert(struct pci_id **list, struct pci_id *new)
-{
-    if(!*list){
-        // sort maybe
-        *list=calloc(1, ) 
-        // insert first item
-    }else{
-
-    }
 
 
-}
 //const char *usage = ""
 int main(int argc, char **argv){
-    int opt, f_len, ifd, ofd, num_ids, i, j;
-    char *file_mm;
-    struct pci_id_list *head = NULL;
+    int opt, i, j;
     json_value *json_data; //aray
     struct _json_value ** json_ids, *field; 
     char error[100];
-    int arr_len;
+    int arr_len, num_fields;
     struct pci_id temp;
+    id_map map;
+
+
     memset(error, 0, 100);
     memset(&temp, 0, sizeof(temp));
 
@@ -121,7 +108,7 @@ int main(int argc, char **argv){
             }
             for(i=0; i < arr_len; i++){
                 json_object_entry * id = json_ids[i]->u.object.values;
-                int num_fields = json_ids[i]->u.object.length;
+                num_fields = json_ids[i]->u.object.length;
                 // insert head
                 for(j=0; j < num_fields; j++){
                     char *field_name = id[j].name;
@@ -132,12 +119,14 @@ int main(int argc, char **argv){
                         // could be description
                         // change to regex (all hex or digits)
                         if(!strcmp(field_name, "vendor desc")){
-                            temp.vendor = field_val;
-                        }else if(!strcmp(device_name, "vendor desc")){
-
+                            temp.vendor_name = field_val_str;
+                        }else if(!strcmp(field_name, "device desc")){
+                            temp.device_name = field_val_str;
+                        }else if(!strcmp(field_name, "subsystem desc")){
+                            temp.subsystem_name = field_val_str; 
+                        }else{
+                            // not correct format
                         }
- 
-
                     }else{
                         // change to regex (all hex or digits)
                         if(!strcmp(field_name, "vendor")){
@@ -146,7 +135,7 @@ int main(int argc, char **argv){
                             temp.device = field_val;
                         }else if (!strcmp(field_name, "svendor")){
                             temp.svendor = field_val;
-                        }else if (!strcmp(feild_name, "sdevice")){
+                        }else if (!strcmp(field_name, "sdevice")){
                             temp.sdevice = field_val;
                         }else{
                             // not correect format; please check how the input  
@@ -155,14 +144,18 @@ int main(int argc, char **argv){
 
                     }
 
-                    
 
+                }// after num of fields
+                
+                if(map.insert(&tmp, error) < 0){
+                    printf(error);
                 }
+                memset(&temp, 0, sizeof(temp));
 
 
-            }
-            // sort head and open the pci.ids
-            // read line by line till vendor is <= vendor_in_file
+            }// after num of arrays
+            // Step 1 - open pci.ids and new pci.ids file
+            // Step 2 - read by line and parse and write to new file
 
 
 
