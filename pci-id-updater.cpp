@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <string.h>
+#include <array>
 #include "json.h"
 
 static const char options[] = "j:";
@@ -30,21 +31,62 @@ struct pci_id{
 // map<uint16_t, map<struct pci_id_device, > map 
 class id_map{
     private:
-        std::map<uint16_t, std::string*> ven_map, dev_map;
-        std::map<std::pair<uint16_t, uint16_t>, std::string*> subsys_map;
-        std::map<uint16_t, uint16_t> ven_to_dev; 
-        std::map<uint16_t, std::pair<uint16_t, uint16_t>> dev_to_sub;
+        std::map<uint16_t, std::string> ven_map;
+        std::map<std::pair<uint16_t, uint16_t>, std::string> dev_map;
+        std::map<std::array<uint16_t,4>, std::string> subsys_map;
+
+        int check_id(int id){
+            if(id > 0xffff || id < 0){
+                return 0;
+            }else{
+                return 1;
+            }
+        }
     public:
+        id_map():
+            ven_map(), dev_map(), subsys_map(){}
+
         int insert(struct pci_id *model, char *error)
         {
-            if(model->vendor > 0xffff || model->vendor < 0){
-                return;
+
+            if(!check_id(model->vendor)){
+                sprintf(error, "vendor not in the range");
+                return 0;
             }
-            ven_map.insert(std::pair<uint16_t, std::string>(id, name));
+            ven_map.insert(std::pair<uint16_t, std::string>(model->vendor, model->vendor_name));
+            if(!check_id(model->device)){
+                sprintf(error, "device not in the range");
+                return 0;
+            }
+            dev_map.insert(std::pair<std::pair<uint16_t,uint16_t>, std::string>(
+                std::pair<uint16_t, uint16_t>(model->vendor, model->device), model->device_name)
+             );
+            if(!check_id(model->svendor) || !check_id(model->sdevice)){
+                sprintf(error, "svendor or sdevice not in the range");
+                return 0;
+            }
+            std::array<uint16_t, 4> ids = { (uint16_t)model->vendor, 
+                                             (uint16_t)model->device, 
+                                             (uint16_t)model->svendor, 
+                                             (uint16_t)model->sdevice
+            };
+
+            subsys_map.insert(
+                std::pair<std::array<uint16_t,4>, std::string>(
+                    ids,
+                    model->subsystem_name
+                    )
+                );
+            return 1;
 
         }
+        std::string &get_subsystem(uint16_t v, uint16_t d, uint16_t sv, uint16_t sd)
+        {
+            return subsys_map()
 
-
+        }
+                
+        
 
 };
 
@@ -147,7 +189,7 @@ int main(int argc, char **argv){
 
                 }// after num of fields
                 
-                if(map.insert(&tmp, error) < 0){
+                if(map.insert(&temp, error) < 0){
                     printf(error);
                 }
                 memset(&temp, 0, sizeof(temp));
