@@ -45,6 +45,7 @@ void VendorIDBuilder::clear(){
 
 
 
+VendorIDBuilder JSONFileParser::builder;
 
 json_value *JSONFileParser::get_json_array_file(const char *json_file, char *error)
 {
@@ -75,6 +76,9 @@ json_value *JSONFileParser::get_json_array_file(const char *json_file, char *err
     return json_data;
 }
 
+bool JSONFileParser::isValidID(int id){
+    return id >= 0 && id<= PCI_ID_MAX;
+}
 
 int JSONFileParser::parse_json_array_file(const char *json_file, pci_ids &ids, char *error){
 
