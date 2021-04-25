@@ -1,0 +1,27 @@
+[
+    {
+        "vendor": "0x1077",
+        "device": "0x2532",
+        "sub_vendor": "0x1014",
+        "sub_device": "0x41e",
+        "vendor_name" : "QLogic",
+        "device_name" : "ISP2532-based 8Gb Fibre Channel to PCI Express HBA",
+        "subsys_name" : "FC EN0Y/EN12 PCIe2 LP 8 Gb 4-port Fibre Channel Adapter for POWER"
+    },
+     {
+        "vendor": "0x1077",
+        "device": "0x2532",
+        "sub_vendor": "0x1014",
+        "sub_device": "0x41a"
+        "vendor_name" : "QLogic",
+        "device_name" : "ISP2532-based 8Gb Fibre Channel to PCI Express HBA",
+        "subsys_name" : "FC EN0Y/EN12 PCIe2 LP 8 Gb 2-port Fibre Channel Adapter for POWER"
+    },
+     {
+        "vendor": "0x1077",
+        "device": "0x2532",
+        "vendor_name" : "QLogic",
+        "device_name" : "ISP2532"
+    },
+
+]

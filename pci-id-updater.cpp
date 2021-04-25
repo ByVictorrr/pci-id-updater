@@ -7,6 +7,7 @@
 #include <sys/mman.h>
 #include <string.h>
 #include <array>
+#include <queue>
 #include "json.h"
 
 static const char options[] = "j:";
@@ -18,77 +19,106 @@ static const char help_msg[] =
 
 #define PCI_ID_NAME_MAX 100
 
+template<class T, class C = std::vector<T>, class P = std::less<typename C::value_type> >
+struct heapq :std::priority_queue<T,C,P> {
+    using priority_queue<T,C,P>::priority_queue;
+    typename C::iterator begin() { return std::priority_queue<T, C, P>::c.begin(); }
+    typename C::iterator end() { return std::priority_queue<T, C, P>::c.end(); }
+};
+
 // model
-struct pci_id{
+
+bool checkID(int id){
+    if(id < 0 || id > 0xffff)
+        return false;
+    return true;
+}
+struct pci_id_model{
     int vendor, device, svendor, sdevice;
     char *vendor_name, *device_name, *subsystem_name;
 };
+struct pci_id{
+    int vendor, device, svendor, sdevice;
+};
+
 
 // list of maps <ven_id->{dev_id struct}>
 // <dev_id->{subsystem_id struct}
 
 
-// map<uint16_t, map<struct pci_id_device, > map 
-class id_map{
+
+struct sub_id{
+    uint16_t vid, did;
+    std::string name;
+};
+class device_id{
     private:
-        std::map<uint16_t, std::string> ven_map;
-        std::map<std::pair<uint16_t, uint16_t>, std::string> dev_map;
-        std::map<std::array<uint16_t,4>, std::string> subsys_map;
-
-        int check_id(int id){
-            if(id > 0xffff || id < 0){
-                return 0;
-            }else{
-                return 1;
-            }
-        }
+        heapq <sub_id, std::vector<device_id>> subsys;
+        std::string name;
+        uint16_t id;
     public:
-        id_map():
-            ven_map(), dev_map(), subsys_map(){}
+        inline int getNumOfSubSys(){return this->subsys.size();}
+        inline uint16_t getID(){return this->id;}
+        inline std::string &getName(){return this->name;}
 
-        int insert(struct pci_id *model, char *error)
-        {
 
-            if(!check_id(model->vendor)){
-                sprintf(error, "vendor not in the range");
-                return 0;
-            }
-            ven_map.insert(std::pair<uint16_t, std::string>(model->vendor, model->vendor_name));
-            if(!check_id(model->device)){
-                sprintf(error, "device not in the range");
-                return 0;
-            }
-            dev_map.insert(std::pair<std::pair<uint16_t,uint16_t>, std::string>(
-                std::pair<uint16_t, uint16_t>(model->vendor, model->device), model->device_name)
-             );
-            if(!check_id(model->svendor) || !check_id(model->sdevice)){
-                sprintf(error, "svendor or sdevice not in the range");
-                return 0;
-            }
-            std::array<uint16_t, 4> ids = { (uint16_t)model->vendor, 
-                                             (uint16_t)model->device, 
-                                             (uint16_t)model->svendor, 
-                                             (uint16_t)model->sdevice
-            };
-
-            subsys_map.insert(
-                std::pair<std::array<uint16_t,4>, std::string>(
-                    ids,
-                    model->subsystem_name
-                    )
-                );
-            return 1;
-
-        }
-        std::string &get_subsystem(uint16_t v, uint16_t d, uint16_t sv, uint16_t sd)
-        {
-            return subsys_map()
-
-        }
-                
-        
 
 };
+class vendor_id{
+    private:
+        heapq <device_id, std::vector<device_id>> devs;
+        std::string name;
+        uint16_t id;
+    public:
+        vendor_id(std::string &&name, uint16_t id):
+            name(name),id(id){}
+
+        inline int getNumOfDevs(){return this->devs.size();}
+        inline uint16_t getID(){return this->id;}
+        inline std::string &getName(){return this->name;}
+
+        void insert(device_id &&id){
+            devs.push(id);
+        }
+        bool inDevs(int did){
+            for(device_id d:devs)
+                if(d.getID() == did)
+                    return true;
+            return false;
+        }
+
+
+
+
+};
+// kinda like builder
+class pci_ids{
+    private:
+        heapq <vendor_id> vens;
+    public:
+        pci_ids(): vens(){}
+        bool inVens(int vid){
+            for(vendor_id v: vid)
+                if(v.getID() == vid)
+                    return true;
+            return false;
+        }
+
+
+        void fill(struct pci_id_model *id){
+            if(!id)
+                return;
+
+            if(!inVens(id->vendor))
+                vens.push(vendor_id())
+            else{
+
+            }
+
+        }
+
+};
+
 
 
 
@@ -125,6 +155,12 @@ struct _json_value **parse_json_array_file(const char *json_file, int *arr_len, 
 
 
 
+
+void read_and_write(int org_fd, int new_fd, std::queue<>)
+{
+
+}
+
 //const char *usage = ""
 int main(int argc, char **argv){
     int opt, i, j;
@@ -132,8 +168,13 @@ int main(int argc, char **argv){
     struct _json_value ** json_ids, *field; 
     char error[100];
     int arr_len, num_fields;
-    struct pci_id temp;
-    id_map map;
+    struct pci_id_model temp;
+   auto compare = [](struct pci_id lhs, struct pci_id rhs)
+                {
+                    return lhs.vendor < rhs.vendor;
+                };
+
+    std::queue<struct pci_id, std::vector, decltype(compare)> pending;
 
 
     memset(error, 0, 100);
@@ -192,6 +233,7 @@ int main(int argc, char **argv){
                 if(map.insert(&temp, error) < 0){
                     printf(error);
                 }
+                pending.push(temp);
                 memset(&temp, 0, sizeof(temp));
 
 
