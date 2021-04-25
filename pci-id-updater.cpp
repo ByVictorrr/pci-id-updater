@@ -49,7 +49,8 @@ struct pQueue :
    typename C::iterator end() { return std::priority_queue<T, C, P>::c.end(); }
 };
 
-
+class vendor_id;
+class device_id;
 struct sub_id{
     uint16_t vid, did;
     std::string name;
@@ -58,9 +59,39 @@ struct sub_id{
     : vid(vid),did(did),name(name){}
 
 };
+class Compare{
+    public:
+        bool operator()(sub_id &s1, sub_id &s2){
+            if(s1.vid < s2.vid){
+                return true;
+            }else if (s1.vid = s2.vid ){
+                if(s1.did <= s2.vid)
+                    return true;
+                else
+                    return false;
+            }else{
+                return false;
+            }
+        }
+        bool operator()(device_id &s1, device_id &s2)
+        {
+            if(s1.getID() <= s2.getID()){
+                return true;
+            }
+            return false;
+        }
+        bool operator()(vendor_id &s1, vendor_id &s2)
+        {
+            if(s1.getID() <= s2.getID()){
+                return true;
+            }
+            return false;
+        }
+
+};
 class device_id{
     private:
-        pQueue <sub_id, std::vector<sub_id>, > subsys;
+        pQueue <sub_id, std::vector<sub_id>, Compare> subsys;
         std::string name;
         int id;
     public:
@@ -90,7 +121,7 @@ class device_id{
 };
 class vendor_id{
     private:
-        pQueue <device_id, std::vector<device_id>> devs;
+        pQueue <device_id, std::vector<device_id>, Compare> devs;
         std::string name;
         int id;
     public:
@@ -115,7 +146,7 @@ class vendor_id{
                 if(d.getID() == id)
                     return d;
         }
-        inline pQueue<device_id,std::vector<device_id>> &getDevices(){return devs;}
+        inline pQueue<device_id,std::vector<device_id>, Compare> &getDevices(){return devs;}
 
 
         bool inDevs(int did){
@@ -132,7 +163,7 @@ class vendor_id{
 // kinda like builder
 class pci_ids{
     private:
-        pQueue <vendor_id> vens;
+        pQueue <vendor_id, std::vector<vendor_id>, Compare> vens;
     public:
         pci_ids(): vens(){}
         bool inVens(int vid){
