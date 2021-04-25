@@ -1,4 +1,6 @@
 #include <bits/stdint-uintn.h>
+#include <iostream>
+#include <fstream>
 #include <map>
 #include <unistd.h>
 #include <stdint.h>
@@ -18,6 +20,8 @@ static const char help_msg[] =
 ;
 
 #define PCI_ID_NAME_MAX 100
+#define PCI_ID_MAX 0xffff
+
 
 template<class T, class C = std::vector<T>, class P = std::less<typename C::value_type> >
 struct heapq :std::priority_queue<T,C,P> {
@@ -50,16 +54,32 @@ struct pci_id{
 struct sub_id{
     uint16_t vid, did;
     std::string name;
+
+    sub_id(uint16_t vid, uint16_t did, std::string name)
+    : vid(vid),did(did),name(name){}
+
 };
 class device_id{
     private:
-        heapq <sub_id, std::vector<device_id>> subsys;
+        heapq <sub_id, std::vector<sub_id>> subsys;
         std::string name;
         uint16_t id;
     public:
+        device_id(uint16_t id, std::string &&name): id(id),name(name){}
         inline int getNumOfSubSys(){return this->subsys.size();}
         inline uint16_t getID(){return this->id;}
         inline std::string &getName(){return this->name;}
+        void insert(sub_id &&id){
+            subsys.push(id);
+        }
+        bool inSubSys(uint16_t vid, uint16_t did){
+            for(struct sub_id sid: subsys)
+                if(sid.did == did && sid.vid == vid)
+                    return true;
+            return false;
+        }
+
+
 
 
 
@@ -70,7 +90,7 @@ class vendor_id{
         std::string name;
         uint16_t id;
     public:
-        vendor_id(std::string &&name, uint16_t id):
+        vendor_id(int id, std::string &&name):
             name(name),id(id){}
 
         inline int getNumOfDevs(){return this->devs.size();}
@@ -80,6 +100,13 @@ class vendor_id{
         void insert(device_id &&id){
             devs.push(id);
         }
+        device_id &getDevice(int id){
+            for(device_id &d: this->devs)
+                if(d.getID() == id)
+                    return d;
+        }
+
+
         bool inDevs(int did){
             for(device_id d:devs)
                 if(d.getID() == did)
@@ -98,21 +125,50 @@ class pci_ids{
     public:
         pci_ids(): vens(){}
         bool inVens(int vid){
-            for(vendor_id v: vid)
+            for(vendor_id v: this->vens)
                 if(v.getID() == vid)
                     return true;
             return false;
         }
+        vendor_id &getVendor(int id){
+            for(vendor_id &v: this->vens)
+                if(v.getID() == id)
+                    return v;
+        }
+        bool isValidID(int id){
+            if(id < 0 || id > PCI_ID_MAX)
+                return false;
+            return true;
+        }
 
 
-        void fill(struct pci_id_model *id){
-            if(!id)
+        void fill(const struct pci_id_model *model, char *error){
+            if(!model)
                 return;
-
-            if(!inVens(id->vendor))
-                vens.push(vendor_id())
-            else{
-
+            // Case 1 - no vendor dont fill, maybe print
+            if(!isValidID(model->vendor)){
+                return;
+            // Case 2 - if vendor isnt in the queue, create a new one and push
+            }else if(!inVens(model->vendor)){
+                this->vens.push(vendor_id(model->vendor, model->vendor_name));
+            }
+            // It doesnt matter if vendor is new just inserted
+            vendor_id &vtmp=getVendor(model->vendor);
+            // Case 3 - no device, then dont fill 
+            if(!isValidID(model->device)){
+                return;
+            // Case 4 - if device isnt in queue, create a new one and push
+            }else if(!vtmp.inDevs(model->device)){
+                    vtmp.insert(device_id(model->device, model->device_name));
+            }
+            // Grab newly insert or not newly inserted
+            device_id &dtmp = vtmp.getDevice(model->device);
+            if(!isValidID(model->svendor) || !isValidID(model->sdevice)){
+                return;
+            }else if(!dtmp.inSubSys(model->svendor,model->sdevice)){
+                dtmp.insert(sub_id(model->svendor, model->sdevice, model->subsystem_name));
+            }else{
+                // print already in list
             }
 
         }
@@ -156,10 +212,6 @@ struct _json_value **parse_json_array_file(const char *json_file, int *arr_len, 
 
 
 
-void read_and_write(int org_fd, int new_fd, std::queue<>)
-{
-
-}
 
 //const char *usage = ""
 int main(int argc, char **argv){
@@ -169,13 +221,7 @@ int main(int argc, char **argv){
     char error[100];
     int arr_len, num_fields;
     struct pci_id_model temp;
-   auto compare = [](struct pci_id lhs, struct pci_id rhs)
-                {
-                    return lhs.vendor < rhs.vendor;
-                };
-
-    std::queue<struct pci_id, std::vector, decltype(compare)> pending;
-
+    pci_ids ids;
 
     memset(error, 0, 100);
     memset(&temp, 0, sizeof(temp));
@@ -201,11 +247,11 @@ int main(int argc, char **argv){
                     if(!(field_val=strtol(field_val_str, NULL, 16))){ // also what if its 0 how do check if its not numbers
                         // could be description
                         // change to regex (all hex or digits)
-                        if(!strcmp(field_name, "vendor desc")){
+                        if(!strcmp(field_name, "vendor_desc")){
                             temp.vendor_name = field_val_str;
-                        }else if(!strcmp(field_name, "device desc")){
+                        }else if(!strcmp(field_name, "device_desc")){
                             temp.device_name = field_val_str;
-                        }else if(!strcmp(field_name, "subsystem desc")){
+                        }else if(!strcmp(field_name, "subsystem_desc")){
                             temp.subsystem_name = field_val_str; 
                         }else{
                             // not correct format
@@ -229,22 +275,34 @@ int main(int argc, char **argv){
 
 
                 }// after num of fields
-                
-                if(map.insert(&temp, error) < 0){
-                    printf(error);
-                }
-                pending.push(temp);
-                memset(&temp, 0, sizeof(temp));
+                ids.fill(&temp, error);
+                memset(&temp, 0, sizeof(temp)); // also init ints -1
 
 
             }// after num of arrays
             // Step 1 - open pci.ids and new pci.ids file
+            std::ofstream ofile(argv[2]);
+            std::istream ifile(argv[1]);
+            std::string line;
             // Step 2 - read by line and parse and write to new file
+            if(ifile.is_open()){
+                while(getline(ifile,line)){
+                    // parser dont read anything if # 
+                    if(line[0] == '#')
+                        ofile.write(line);
+                    }else if(){
+                        // check to seee if the line meets a regex 
+                    }
+
+
+                }
+                ifile.close();
+            )
 
 
 
 
-            
+
 
            break; 
         case 'i':
