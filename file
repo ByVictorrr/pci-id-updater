@@ -1,0 +1,1929 @@
+g++ -std=c++11 pci-id-updater.cpp -lm -o pci-id-updater.o
+pci-id-updater.cpp: In member function ‘vendor_id& VendorIDBuilder::build()’:
+pci-id-updater.cpp:195:23: warning: reference to local variable ‘v’ returned [-Wreturn-local-addr]
+             vendor_id v = vendor_id(vendor, vendor_name);
+                       ^
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h: In instantiation of ‘bool std::less<_Tp>::operator()(const _Tp&, const _Tp&) const [with _Tp = sub_id]’:
+/usr/include/c++/7/bits/predefined_ops.h:177:11:   required from ‘bool __gnu_cxx::__ops::_Iter_comp_val<_Compare>::operator()(_Iterator, _Value&) [with _Iterator = __gnu_cxx::__normal_iterator<sub_id*, std::vector<sub_id> >; _Value = sub_id; _Compare = std::less<sub_id>]’
+/usr/include/c++/7/bits/stl_heap.h:133:48:   required from ‘void std::__push_heap(_RandomAccessIterator, _Distance, _Distance, _Tp, _Compare&) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<sub_id*, std::vector<sub_id> >; _Distance = long int; _Tp = sub_id; _Compare = __gnu_cxx::__ops::_Iter_comp_val<std::less<sub_id> >]’
+/usr/include/c++/7/bits/stl_heap.h:207:23:   required from ‘void std::push_heap(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<sub_id*, std::vector<sub_id> >; _Compare = std::less<sub_id>]’
+/usr/include/c++/7/bits/stl_queue.h:598:16:   required from ‘void std::priority_queue<_Tp, _Sequence, _Compare>::push(const value_type&) [with _Tp = sub_id; _Sequence = std::vector<sub_id>; _Compare = std::less<sub_id>; std::priority_queue<_Tp, _Sequence, _Compare>::value_type = sub_id]’
+pci-id-updater.cpp:72:27:   required from here
+/usr/include/c++/7/bits/stl_function.h:386:20: error: no match for ‘operator<’ (operand types are ‘const sub_id’ and ‘const sub_id’)
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_pair.h:454:5: note: candidate: template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_pair.h:454:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::pair<_T1, _T2>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:308:5: note: candidate: template<class _Iterator> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator<(const reverse_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:308:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:346:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator<(const reverse_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:346:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:1145:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)
+     operator<(const move_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1145:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::move_iterator<_IteratorL>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:1151:5: note: candidate: template<class _Iterator> bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&)
+     operator<(const move_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1151:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::move_iterator<_IteratorL>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6094:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6094:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6107:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6107:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6119:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const _CharT* __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6119:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   mismatched types ‘const _CharT*’ and ‘sub_id’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/ios_base.h:46:0,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/system_error:208:3: note: candidate: bool std::operator<(const std::error_code&, const std::error_code&)
+   operator<(const error_code& __lhs, const error_code& __rhs) noexcept
+   ^~~~~~~~
+/usr/include/c++/7/system_error:208:3: note:   no known conversion for argument 1 from ‘const sub_id’ to ‘const std::error_code&’
+/usr/include/c++/7/system_error:282:3: note: candidate: bool std::operator<(const std::error_condition&, const std::error_condition&)
+   operator<(const error_condition& __lhs,
+   ^~~~~~~~
+/usr/include/c++/7/system_error:282:3: note:   no known conversion for argument 1 from ‘const sub_id’ to ‘const std::error_condition&’
+In file included from /usr/include/c++/7/map:60:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_tree.h:1543:5: note: candidate: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator<(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator<(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_tree.h:1543:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/tuple:39:0,
+                 from /usr/include/c++/7/bits/stl_map.h:63,
+                 from /usr/include/c++/7/map:61,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/array:262:5: note: candidate: template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+     ^~~~~~~~
+/usr/include/c++/7/array:262:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::array<_Tp, _Nm>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_map.h:63:0,
+                 from /usr/include/c++/7/map:61,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/tuple:1410:5: note: candidate: template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Tps ...>&, const std::tuple<_Args2 ...>&)
+     operator<(const tuple<_TElements...>& __t,
+     ^~~~~~~~
+/usr/include/c++/7/tuple:1410:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::tuple<_Tps ...>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/map:61:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_map.h:1411:5: note: candidate: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_map.h:1411:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::map<_Key, _Tp, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/map:62:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_multimap.h:1076:5: note: candidate: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_multimap.h:1076:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:293:5: note: candidate: template<class _Tp, class _Ref, class _Ptr> bool std::operator<(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _Ref, _Ptr>&)
+     operator<(const _Deque_iterator<_Tp, _Ref, _Ptr>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:293:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:301:5: note: candidate: template<class _Tp, class _RefL, class _PtrL, class _RefR, class _PtrR> bool std::operator<(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _RefR, _PtrR>&)
+     operator<(const _Deque_iterator<_Tp, _RefL, _PtrL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:301:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:2276:5: note: candidate: template<class _Tp, class _Alloc> bool std::operator<(const std::deque<_Tp, _Alloc>&, const std::deque<_Tp, _Alloc>&)
+     operator<(const deque<_Tp, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:2276:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::deque<_Tp, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/vector:64:0,
+                 from /usr/include/c++/7/queue:61,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_vector.h:1618:5: note: candidate: template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_vector.h:1618:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/queue:64:0,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_queue.h:336:5: note: candidate: template<class _Tp, class _Seq> bool std::operator<(const std::queue<_Tp, _Seq>&, const std::queue<_Tp, _Seq>&)
+     operator<(const queue<_Tp, _Seq>& __x, const queue<_Tp, _Seq>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_queue.h:336:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::queue<_Tp, _Seq>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:713:5: note: candidate: template<class _Tp, class _Dp, class _Up, class _Ep> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, const std::unique_ptr<_Up, _Ep>&)
+     operator<(const unique_ptr<_Tp, _Dp>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:713:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:724:5: note: candidate: template<class _Tp, class _Dp> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, std::nullptr_t)
+     operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:724:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:730:5: note: candidate: template<class _Tp, class _Dp> bool std::operator<(std::nullptr_t, const std::unique_ptr<_Tp, _Dp>&)
+     operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:730:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1441:5: note: candidate: template<class _Tp, class _Up, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp1, _Lp>&, const std::__shared_ptr<_Tp2, _Lp>&)
+     operator<(const __shared_ptr<_Tp, _Lp>& __a,
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1441:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__shared_ptr<_Tp1, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1452:5: note: candidate: template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp, _Lp>&, std::nullptr_t)
+     operator<(const __shared_ptr<_Tp, _Lp>& __a, nullptr_t) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1452:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1460:5: note: candidate: template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(std::nullptr_t, const std::__shared_ptr<_Tp, _Lp>&)
+     operator<(nullptr_t, const __shared_ptr<_Tp, _Lp>& __a) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1460:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:398:5: note: candidate: template<class _Tp, class _Up> bool std::operator<(const std::shared_ptr<_Tp>&, const std::shared_ptr<_Up>&)
+     operator<(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:398:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:408:5: note: candidate: template<class _Tp> bool std::operator<(const std::shared_ptr<_Tp>&, std::nullptr_t)
+     operator<(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:408:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:416:5: note: candidate: template<class _Tp> bool std::operator<(std::nullptr_t, const std::shared_ptr<_Tp>&)
+     operator<(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:416:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/stack:61:0,
+                 from /usr/include/c++/7/regex:47,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/stl_stack.h:311:5: note: candidate: template<class _Tp, class _Seq> bool std::operator<(const std::stack<_Tp, _Seq>&, const std::stack<_Tp, _Seq>&)
+     operator<(const stack<_Tp, _Seq>& __x, const stack<_Tp, _Seq>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_stack.h:311:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::stack<_Tp, _Seq>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1471:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const typename std::iterator_traits<_Iter>::value_type&)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1471:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1391:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const typename std::iterator_traits<_Iter>::value_type&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(typename iterator_traits<_Bi_iter>::value_type const& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1391:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1314:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const typename std::iterator_traits<_Iter>::value_type*)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1314:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1240:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const typename std::iterator_traits<_Iter>::value_type*, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(typename iterator_traits<_Bi_iter>::value_type const* __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1240:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1163:5: note: candidate: template<class _Bi_iter, class _Ch_traits, class _Ch_alloc> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>&)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1163:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1083:5: note: candidate: template<class _Bi_iter, class _Ch_traits, class _Ch_alloc> bool std::__cxx11::operator<(std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(const __sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1083:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1004:5: note: candidate: template<class _BiIter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(const sub_match<_BiIter>& __lhs, const sub_match<_BiIter>& __rhs)
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1004:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const sub_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+/usr/include/c++/7/bits/stl_function.h: In instantiation of ‘bool std::less<_Tp>::operator()(const _Tp&, const _Tp&) const [with _Tp = device_id]’:
+/usr/include/c++/7/bits/predefined_ops.h:177:11:   required from ‘bool __gnu_cxx::__ops::_Iter_comp_val<_Compare>::operator()(_Iterator, _Value&) [with _Iterator = __gnu_cxx::__normal_iterator<device_id*, std::vector<device_id> >; _Value = device_id; _Compare = std::less<device_id>]’
+/usr/include/c++/7/bits/stl_heap.h:133:48:   required from ‘void std::__push_heap(_RandomAccessIterator, _Distance, _Distance, _Tp, _Compare&) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<device_id*, std::vector<device_id> >; _Distance = long int; _Tp = device_id; _Compare = __gnu_cxx::__ops::_Iter_comp_val<std::less<device_id> >]’
+/usr/include/c++/7/bits/stl_heap.h:207:23:   required from ‘void std::push_heap(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<device_id*, std::vector<device_id> >; _Compare = std::less<device_id>]’
+/usr/include/c++/7/bits/stl_queue.h:598:16:   required from ‘void std::priority_queue<_Tp, _Sequence, _Compare>::push(const value_type&) [with _Tp = device_id; _Sequence = std::vector<device_id>; _Compare = std::less<device_id>; std::priority_queue<_Tp, _Sequence, _Compare>::value_type = device_id]’
+pci-id-updater.cpp:105:25:   required from here
+/usr/include/c++/7/bits/stl_function.h:386:20: error: no match for ‘operator<’ (operand types are ‘const device_id’ and ‘const device_id’)
+In file included from /usr/include/c++/7/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_pair.h:454:5: note: candidate: template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_pair.h:454:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::pair<_T1, _T2>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:308:5: note: candidate: template<class _Iterator> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator<(const reverse_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:308:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:346:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator<(const reverse_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:346:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:1145:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)
+     operator<(const move_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1145:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::move_iterator<_IteratorL>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:1151:5: note: candidate: template<class _Iterator> bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&)
+     operator<(const move_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1151:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::move_iterator<_IteratorL>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6094:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6094:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6107:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6107:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6119:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const _CharT* __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6119:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   mismatched types ‘const _CharT*’ and ‘device_id’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/ios_base.h:46:0,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/system_error:208:3: note: candidate: bool std::operator<(const std::error_code&, const std::error_code&)
+   operator<(const error_code& __lhs, const error_code& __rhs) noexcept
+   ^~~~~~~~
+/usr/include/c++/7/system_error:208:3: note:   no known conversion for argument 1 from ‘const device_id’ to ‘const std::error_code&’
+/usr/include/c++/7/system_error:282:3: note: candidate: bool std::operator<(const std::error_condition&, const std::error_condition&)
+   operator<(const error_condition& __lhs,
+   ^~~~~~~~
+/usr/include/c++/7/system_error:282:3: note:   no known conversion for argument 1 from ‘const device_id’ to ‘const std::error_condition&’
+In file included from /usr/include/c++/7/map:60:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_tree.h:1543:5: note: candidate: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator<(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator<(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_tree.h:1543:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/tuple:39:0,
+                 from /usr/include/c++/7/bits/stl_map.h:63,
+                 from /usr/include/c++/7/map:61,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/array:262:5: note: candidate: template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+     ^~~~~~~~
+/usr/include/c++/7/array:262:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::array<_Tp, _Nm>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_map.h:63:0,
+                 from /usr/include/c++/7/map:61,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/tuple:1410:5: note: candidate: template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Tps ...>&, const std::tuple<_Args2 ...>&)
+     operator<(const tuple<_TElements...>& __t,
+     ^~~~~~~~
+/usr/include/c++/7/tuple:1410:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::tuple<_Tps ...>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/map:61:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_map.h:1411:5: note: candidate: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_map.h:1411:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::map<_Key, _Tp, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/map:62:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_multimap.h:1076:5: note: candidate: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_multimap.h:1076:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:293:5: note: candidate: template<class _Tp, class _Ref, class _Ptr> bool std::operator<(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _Ref, _Ptr>&)
+     operator<(const _Deque_iterator<_Tp, _Ref, _Ptr>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:293:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:301:5: note: candidate: template<class _Tp, class _RefL, class _PtrL, class _RefR, class _PtrR> bool std::operator<(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _RefR, _PtrR>&)
+     operator<(const _Deque_iterator<_Tp, _RefL, _PtrL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:301:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:2276:5: note: candidate: template<class _Tp, class _Alloc> bool std::operator<(const std::deque<_Tp, _Alloc>&, const std::deque<_Tp, _Alloc>&)
+     operator<(const deque<_Tp, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:2276:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::deque<_Tp, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/vector:64:0,
+                 from /usr/include/c++/7/queue:61,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_vector.h:1618:5: note: candidate: template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_vector.h:1618:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/queue:64:0,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_queue.h:336:5: note: candidate: template<class _Tp, class _Seq> bool std::operator<(const std::queue<_Tp, _Seq>&, const std::queue<_Tp, _Seq>&)
+     operator<(const queue<_Tp, _Seq>& __x, const queue<_Tp, _Seq>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_queue.h:336:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::queue<_Tp, _Seq>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:713:5: note: candidate: template<class _Tp, class _Dp, class _Up, class _Ep> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, const std::unique_ptr<_Up, _Ep>&)
+     operator<(const unique_ptr<_Tp, _Dp>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:713:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:724:5: note: candidate: template<class _Tp, class _Dp> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, std::nullptr_t)
+     operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:724:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:730:5: note: candidate: template<class _Tp, class _Dp> bool std::operator<(std::nullptr_t, const std::unique_ptr<_Tp, _Dp>&)
+     operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:730:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1441:5: note: candidate: template<class _Tp, class _Up, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp1, _Lp>&, const std::__shared_ptr<_Tp2, _Lp>&)
+     operator<(const __shared_ptr<_Tp, _Lp>& __a,
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1441:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__shared_ptr<_Tp1, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1452:5: note: candidate: template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp, _Lp>&, std::nullptr_t)
+     operator<(const __shared_ptr<_Tp, _Lp>& __a, nullptr_t) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1452:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1460:5: note: candidate: template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(std::nullptr_t, const std::__shared_ptr<_Tp, _Lp>&)
+     operator<(nullptr_t, const __shared_ptr<_Tp, _Lp>& __a) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1460:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:398:5: note: candidate: template<class _Tp, class _Up> bool std::operator<(const std::shared_ptr<_Tp>&, const std::shared_ptr<_Up>&)
+     operator<(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:398:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:408:5: note: candidate: template<class _Tp> bool std::operator<(const std::shared_ptr<_Tp>&, std::nullptr_t)
+     operator<(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:408:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:416:5: note: candidate: template<class _Tp> bool std::operator<(std::nullptr_t, const std::shared_ptr<_Tp>&)
+     operator<(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:416:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/stack:61:0,
+                 from /usr/include/c++/7/regex:47,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/stl_stack.h:311:5: note: candidate: template<class _Tp, class _Seq> bool std::operator<(const std::stack<_Tp, _Seq>&, const std::stack<_Tp, _Seq>&)
+     operator<(const stack<_Tp, _Seq>& __x, const stack<_Tp, _Seq>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_stack.h:311:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::stack<_Tp, _Seq>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1471:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const typename std::iterator_traits<_Iter>::value_type&)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1471:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1391:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const typename std::iterator_traits<_Iter>::value_type&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(typename iterator_traits<_Bi_iter>::value_type const& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1391:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1314:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const typename std::iterator_traits<_Iter>::value_type*)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1314:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1240:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const typename std::iterator_traits<_Iter>::value_type*, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(typename iterator_traits<_Bi_iter>::value_type const* __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1240:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1163:5: note: candidate: template<class _Bi_iter, class _Ch_traits, class _Ch_alloc> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>&)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1163:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1083:5: note: candidate: template<class _Bi_iter, class _Ch_traits, class _Ch_alloc> bool std::__cxx11::operator<(std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(const __sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1083:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1004:5: note: candidate: template<class _BiIter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(const sub_match<_BiIter>& __lhs, const sub_match<_BiIter>& __rhs)
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1004:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const device_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+/usr/include/c++/7/bits/stl_function.h: In instantiation of ‘bool std::less<_Tp>::operator()(const _Tp&, const _Tp&) const [with _Tp = vendor_id]’:
+/usr/include/c++/7/bits/predefined_ops.h:177:11:   required from ‘bool __gnu_cxx::__ops::_Iter_comp_val<_Compare>::operator()(_Iterator, _Value&) [with _Iterator = __gnu_cxx::__normal_iterator<vendor_id*, std::vector<vendor_id, std::allocator<vendor_id> > >; _Value = vendor_id; _Compare = std::less<vendor_id>]’
+/usr/include/c++/7/bits/stl_heap.h:133:48:   required from ‘void std::__push_heap(_RandomAccessIterator, _Distance, _Distance, _Tp, _Compare&) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<vendor_id*, std::vector<vendor_id, std::allocator<vendor_id> > >; _Distance = long int; _Tp = vendor_id; _Compare = __gnu_cxx::__ops::_Iter_comp_val<std::less<vendor_id> >]’
+/usr/include/c++/7/bits/stl_heap.h:207:23:   required from ‘void std::push_heap(_RandomAccessIterator, _RandomAccessIterator, _Compare) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<vendor_id*, std::vector<vendor_id, std::allocator<vendor_id> > >; _Compare = std::less<vendor_id>]’
+/usr/include/c++/7/bits/stl_queue.h:598:16:   required from ‘void std::priority_queue<_Tp, _Sequence, _Compare>::push(const value_type&) [with _Tp = vendor_id; _Sequence = std::vector<vendor_id, std::allocator<vendor_id> >; _Compare = std::less<vendor_id>; std::priority_queue<_Tp, _Sequence, _Compare>::value_type = vendor_id]’
+pci-id-updater.cpp:154:36:   required from here
+/usr/include/c++/7/bits/stl_function.h:386:20: error: no match for ‘operator<’ (operand types are ‘const vendor_id’ and ‘const vendor_id’)
+In file included from /usr/include/c++/7/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_pair.h:454:5: note: candidate: template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_pair.h:454:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::pair<_T1, _T2>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:308:5: note: candidate: template<class _Iterator> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator<(const reverse_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:308:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:346:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator<(const reverse_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:346:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:1145:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)
+     operator<(const move_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1145:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::move_iterator<_IteratorL>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/bits/char_traits.h:39,
+                 from /usr/include/c++/7/ios:40,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_iterator.h:1151:5: note: candidate: template<class _Iterator> bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&)
+     operator<(const move_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1151:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::move_iterator<_IteratorL>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6094:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6094:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6107:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6107:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/string:52:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/basic_string.h:6119:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<(const _CharT* __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6119:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   mismatched types ‘const _CharT*’ and ‘vendor_id’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/ios_base.h:46:0,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/system_error:208:3: note: candidate: bool std::operator<(const std::error_code&, const std::error_code&)
+   operator<(const error_code& __lhs, const error_code& __rhs) noexcept
+   ^~~~~~~~
+/usr/include/c++/7/system_error:208:3: note:   no known conversion for argument 1 from ‘const vendor_id’ to ‘const std::error_code&’
+/usr/include/c++/7/system_error:282:3: note: candidate: bool std::operator<(const std::error_condition&, const std::error_condition&)
+   operator<(const error_condition& __lhs,
+   ^~~~~~~~
+/usr/include/c++/7/system_error:282:3: note:   no known conversion for argument 1 from ‘const vendor_id’ to ‘const std::error_condition&’
+In file included from /usr/include/c++/7/map:60:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_tree.h:1543:5: note: candidate: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator<(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator<(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_tree.h:1543:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/tuple:39:0,
+                 from /usr/include/c++/7/bits/stl_map.h:63,
+                 from /usr/include/c++/7/map:61,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/array:262:5: note: candidate: template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+     ^~~~~~~~
+/usr/include/c++/7/array:262:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::array<_Tp, _Nm>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/stl_map.h:63:0,
+                 from /usr/include/c++/7/map:61,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/tuple:1410:5: note: candidate: template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Tps ...>&, const std::tuple<_Args2 ...>&)
+     operator<(const tuple<_TElements...>& __t,
+     ^~~~~~~~
+/usr/include/c++/7/tuple:1410:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::tuple<_Tps ...>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/map:61:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_map.h:1411:5: note: candidate: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::map<_Key, _Tp, _Compare, _Alloc>&, const std::map<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const map<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_map.h:1411:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::map<_Key, _Tp, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/map:62:0,
+                 from pci-id-updater.cpp:4:
+/usr/include/c++/7/bits/stl_multimap.h:1076:5: note: candidate: template<class _Key, class _Tp, class _Compare, class _Alloc> bool std::operator<(const std::multimap<_Key, _Tp, _Compare, _Alloc>&, const std::multimap<_Key, _Tp, _Compare, _Alloc>&)
+     operator<(const multimap<_Key, _Tp, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_multimap.h:1076:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::multimap<_Key, _Tp, _Compare, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:293:5: note: candidate: template<class _Tp, class _Ref, class _Ptr> bool std::operator<(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _Ref, _Ptr>&)
+     operator<(const _Deque_iterator<_Tp, _Ref, _Ptr>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:293:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:301:5: note: candidate: template<class _Tp, class _RefL, class _PtrL, class _RefR, class _PtrR> bool std::operator<(const std::_Deque_iterator<_Tp, _Ref, _Ptr>&, const std::_Deque_iterator<_Tp, _RefR, _PtrR>&)
+     operator<(const _Deque_iterator<_Tp, _RefL, _PtrL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:301:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::_Deque_iterator<_Tp, _Ref, _Ptr>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/deque:64:0,
+                 from /usr/include/c++/7/queue:60,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_deque.h:2276:5: note: candidate: template<class _Tp, class _Alloc> bool std::operator<(const std::deque<_Tp, _Alloc>&, const std::deque<_Tp, _Alloc>&)
+     operator<(const deque<_Tp, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_deque.h:2276:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::deque<_Tp, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/vector:64:0,
+                 from /usr/include/c++/7/queue:61,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_vector.h:1618:5: note: candidate: template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_vector.h:1618:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/queue:64:0,
+                 from pci-id-updater.cpp:12:
+/usr/include/c++/7/bits/stl_queue.h:336:5: note: candidate: template<class _Tp, class _Seq> bool std::operator<(const std::queue<_Tp, _Seq>&, const std::queue<_Tp, _Seq>&)
+     operator<(const queue<_Tp, _Seq>& __x, const queue<_Tp, _Seq>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_queue.h:336:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::queue<_Tp, _Seq>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:713:5: note: candidate: template<class _Tp, class _Dp, class _Up, class _Ep> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, const std::unique_ptr<_Up, _Ep>&)
+     operator<(const unique_ptr<_Tp, _Dp>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:713:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:724:5: note: candidate: template<class _Tp, class _Dp> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, std::nullptr_t)
+     operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:724:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from /usr/include/c++/7/regex:44,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/unique_ptr.h:730:5: note: candidate: template<class _Tp, class _Dp> bool std::operator<(std::nullptr_t, const std::unique_ptr<_Tp, _Dp>&)
+     operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:730:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1441:5: note: candidate: template<class _Tp, class _Up, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp1, _Lp>&, const std::__shared_ptr<_Tp2, _Lp>&)
+     operator<(const __shared_ptr<_Tp, _Lp>& __a,
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1441:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__shared_ptr<_Tp1, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1452:5: note: candidate: template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp, _Lp>&, std::nullptr_t)
+     operator<(const __shared_ptr<_Tp, _Lp>& __a, nullptr_t) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1452:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/bits/shared_ptr.h:52:0,
+                 from /usr/include/c++/7/memory:81,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr_base.h:1460:5: note: candidate: template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(std::nullptr_t, const std::__shared_ptr<_Tp, _Lp>&)
+     operator<(nullptr_t, const __shared_ptr<_Tp, _Lp>& __a) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr_base.h:1460:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:398:5: note: candidate: template<class _Tp, class _Up> bool std::operator<(const std::shared_ptr<_Tp>&, const std::shared_ptr<_Up>&)
+     operator<(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:398:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:408:5: note: candidate: template<class _Tp> bool std::operator<(const std::shared_ptr<_Tp>&, std::nullptr_t)
+     operator<(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:408:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/memory:81:0,
+                 from /usr/include/c++/7/regex:45,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/shared_ptr.h:416:5: note: candidate: template<class _Tp> bool std::operator<(std::nullptr_t, const std::shared_ptr<_Tp>&)
+     operator<(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/shared_ptr.h:416:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::shared_ptr<_Tp>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/stack:61:0,
+                 from /usr/include/c++/7/regex:47,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/stl_stack.h:311:5: note: candidate: template<class _Tp, class _Seq> bool std::operator<(const std::stack<_Tp, _Seq>&, const std::stack<_Tp, _Seq>&)
+     operator<(const stack<_Tp, _Seq>& __x, const stack<_Tp, _Seq>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_stack.h:311:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::stack<_Tp, _Seq>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1471:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const typename std::iterator_traits<_Iter>::value_type&)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1471:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1391:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const typename std::iterator_traits<_Iter>::value_type&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(typename iterator_traits<_Bi_iter>::value_type const& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1391:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1314:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const typename std::iterator_traits<_Iter>::value_type*)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1314:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1240:5: note: candidate: template<class _Bi_iter> bool std::__cxx11::operator<(const typename std::iterator_traits<_Iter>::value_type*, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(typename iterator_traits<_Bi_iter>::value_type const* __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1240:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1163:5: note: candidate: template<class _Bi_iter, class _Ch_traits, class _Ch_alloc> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>&)
+     operator<(const sub_match<_Bi_iter>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1163:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1083:5: note: candidate: template<class _Bi_iter, class _Ch_traits, class _Ch_alloc> bool std::__cxx11::operator<(std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(const __sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1083:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘std::__cxx11::__sub_match_string<_Bi_iter, _Ch_traits, _Ch_alloc>’
+       { return __x < __y; }
+                ~~~~^~~~~
+In file included from /usr/include/c++/7/regex:62:0,
+                 from pci-id-updater.cpp:13:
+/usr/include/c++/7/bits/regex.h:1004:5: note: candidate: template<class _BiIter> bool std::__cxx11::operator<(const std::__cxx11::sub_match<_BiIter>&, const std::__cxx11::sub_match<_BiIter>&)
+     operator<(const sub_match<_BiIter>& __lhs, const sub_match<_BiIter>& __rhs)
+     ^~~~~~~~
+/usr/include/c++/7/bits/regex.h:1004:5: note:   template argument deduction/substitution failed:
+In file included from /usr/include/c++/7/string:48:0,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from pci-id-updater.cpp:2:
+/usr/include/c++/7/bits/stl_function.h:386:20: note:   ‘const vendor_id’ is not derived from ‘const std::__cxx11::sub_match<_BiIter>’
+       { return __x < __y; }
+                ~~~~^~~~~
+make: *** [Makefile:11: pci-id-updater.o] Error 1

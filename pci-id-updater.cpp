@@ -33,6 +33,7 @@ static const char help_msg[] =
 #define PCI_ID_SUBSYSTEM_NAME_KEY "subsystem_name"
 
 
+/*
 template<class T, class C = std::vector<T>, class P = std::less<typename C::value_type> >
 struct heapq :std::priority_queue<T,C,P> {
     using priority_queue<T,C,P>::priority_queue;
@@ -40,22 +41,13 @@ struct heapq :std::priority_queue<T,C,P> {
     typename C::iterator end() { return std::priority_queue<T, C, P>::c.end(); }
 };
 
-// model
-
-bool checkID(int id){
-    if(id < 0 || id > 0xffff)
-        return false;
-    return true;
-}
-
-struct pci_id{
-    int vendor, device, svendor, sdevice;
+*/
+template<class T, class C = std::vector<T>, class P = std::less<typename C::value_type> >
+struct pQueue :
+   std::priority_queue<T,C,P> {
+   typename C::iterator begin() { return std::priority_queue<T, C, P>::c.begin(); }
+   typename C::iterator end() { return std::priority_queue<T, C, P>::c.end(); }
 };
-
-
-// list of maps <ven_id->{dev_id struct}>
-// <dev_id->{subsystem_id struct}
-
 
 
 struct sub_id{
@@ -68,18 +60,23 @@ struct sub_id{
 };
 class device_id{
     private:
-        heapq <sub_id, std::vector<sub_id>> subsys;
+        pQueue <sub_id, std::vector<sub_id>, > subsys;
         std::string name;
-        uint16_t id;
+        int id;
     public:
-        device_id(uint16_t id, std::string &&name): id(id),name(name){}
+        device_id(int id, std::string &&name): id(id),name(name){}
         inline int getNumOfSubSys(){return this->subsys.size();}
-        inline uint16_t getID(){return this->id;}
+        inline int getID(){return this->id;}
         inline std::string &getName(){return this->name;}
         void insert(sub_id &&id){
             subsys.push(id);
         }
-        bool inSubSys(uint16_t vid, uint16_t did){
+        void insert(sub_id &id){
+            subsys.push(id);
+        }
+
+
+        bool inSubSys(int vid, int did){
             for(struct sub_id sid: subsys)
                 if(sid.did == did && sid.vid == vid)
                     return true;
@@ -93,25 +90,32 @@ class device_id{
 };
 class vendor_id{
     private:
-        heapq <device_id, std::vector<device_id>> devs;
+        pQueue <device_id, std::vector<device_id>> devs;
         std::string name;
-        uint16_t id;
+        int id;
     public:
         vendor_id(int id, std::string &&name):
             name(name),id(id){}
 
         inline int getNumOfDevs(){return this->devs.size();}
-        inline uint16_t getID(){return this->id;}
+        inline int getID(){return this->id;}
         inline std::string &getName(){return this->name;}
 
         void insert(device_id &&id){
             devs.push(id);
         }
+        void insert(device_id &id){
+            devs.push(id);
+        }
+
+
+
         device_id &getDevice(int id){
             for(device_id &d: this->devs)
                 if(d.getID() == id)
                     return d;
         }
+        inline pQueue<device_id,std::vector<device_id>> &getDevices(){return devs;}
 
 
         bool inDevs(int did){
@@ -128,7 +132,7 @@ class vendor_id{
 // kinda like builder
 class pci_ids{
     private:
-        heapq <vendor_id> vens;
+        pQueue <vendor_id> vens;
     public:
         pci_ids(): vens(){}
         bool inVens(int vid){
@@ -142,35 +146,14 @@ class pci_ids{
                 if(v.getID() == id)
                     return v;
         }
-                void fill(const struct pci_id_model *model, char *error){
-            if(!model)
+        void fill(vendor_id &vid, char *error){
+            // Case 1 - if the vendor id wasnt filled; cant create a entry
+            if(vid.getID() == -1)
                 return;
-            // Case 1 - no vendor dont fill, maybe print
-            if(!isValidID(model->vendor)){
+            else if(!inVens(vid.getID())){
+                this->vens.push(vid);
                 return;
-            // Case 2 - if vendor isnt in the queue, create a new one and push
-            }else if(!inVens(model->vendor)){
-                this->vens.push(vendor_id(model->vendor, model->vendor_name));
             }
-            // It doesnt matter if vendor is new just inserted
-            vendor_id &vtmp=getVendor(model->vendor);
-            // Case 3 - no device, then dont fill 
-            if(!isValidID(model->device)){
-                return;
-            // Case 4 - if device isnt in queue, create a new one and push
-            }else if(!vtmp.inDevs(model->device)){
-                    vtmp.insert(device_id(model->device, model->device_name));
-            }
-            // Grab newly insert or not newly inserted
-            device_id &dtmp = vtmp.getDevice(model->device);
-            if(!isValidID(model->svendor) || !isValidID(model->sdevice)){
-                return;
-            }else if(!dtmp.inSubSys(model->svendor,model->sdevice)){
-                dtmp.insert(sub_id(model->svendor, model->sdevice, model->subsystem_name));
-            }else{
-                // print already in list
-            }
-
         }
 
 };
@@ -210,6 +193,11 @@ class VendorIDBuilder{
         }
         vendor_id &build(){
             vendor_id v = vendor_id(vendor, vendor_name);
+            device_id d = device_id(device, device_name);
+            sub_id s = sub_id(svendor, sdevice, subsystem_name);
+            v.insert(d);
+            d.insert(s);
+
             return v;
         }
         void clear(){
@@ -227,7 +215,7 @@ class VendorIDBuilder{
 };
 class JSONFileParser{
     private:
-        VendorIDBuilder builder;
+        static VendorIDBuilder builder;
         JSONFileParser();
         
         static json_value *get_json_array_file(const char *json_file, char *error)
@@ -258,7 +246,7 @@ class JSONFileParser{
                     
             return json_data;
         }
-         bool isValidID(int id){
+        static bool isValidID(int id){
             if(id < 0 || id > PCI_ID_MAX)
                 return false;
             return true;
@@ -270,26 +258,27 @@ class JSONFileParser{
 
 
     public:
-        int parse_json_array_file(const char *json_file, pci_ids &ids, char *error){
+
+        static int parse_json_array_file(const char *json_file, pci_ids &ids, char *error){
 
             // Step 1 - get the json_array
             json_value *json_ids;
             int int_val;
             
             if(!(json_ids=get_json_array_file(json_file, error))){
-                return -1;
+                return 0;
             }
             for(auto id : json_ids->u.array){
                 //json_object_entry * id = json_ids->u.array.values[]
                 if(id->type != json_object){
                     sprintf(error, "parse_json_array_file: an element in the array isnt an object type\n");
-                    return -1;
+                    return 0;
                 }
                 builder.clear();
                 for(auto pair: id->u.object){
                    if(pair.value->type != json_string){
                         sprintf(error, "Parse_json_array_file: a field value in an object value is not a string\n");
-                        return -1;
+                        return 0;
                     }
                     char *key = pair.name;
                     char *val = pair.value->u.string.ptr;
@@ -312,22 +301,17 @@ class JSONFileParser{
                     }
                     builder.append(key,val);
                 }// after num of fields
-                builder.build();
+                vendor_id &v = builder.build();
+                ids.fill(v, error);
 
             }// num of objects
+            return 1;
         }
 
        
 
 };
 
-class ModelBuilder{
-    private:
-
-    public:
-        j
-
-};
 
 
 
@@ -342,68 +326,30 @@ int main(int argc, char **argv){
     struct _json_value * *field; 
     char error[100];
     int arr_len, num_fields;
-    struct pci_id_model temp;
     pci_ids ids;
 
     memset(error, 0, 100);
-    memset(&temp, 0, sizeof(temp));
 
     while((opt=getopt(argc, argv, options)) != -1){
 
         switch (opt) {
         case 'f':
-            // start parsing the json file (requirements )
-            for(i=0; i < arr_len; i++){
-                json_object_entry * id = json_ids[i]->u.object.values;
-                num_fields = json_ids[i]->u.object.length;
-                // insert head
-                for(j=0; j < num_fields; j++){
-                    char *field_name = id[j].name;
-                    char * field_val_str = id[j].value->u.string.ptr;
-                    int field_val;
-                    // check val type before  ()
-                    if(!(field_val=strtol(field_val_str, NULL, 16))){ // also what if its 0 how do check if its not numbers
-                        // could be description
-                        // change to regex (all hex or digits)
-                        if(!strcmp(field_name, "vendor_desc")){
-                            temp.vendor_name = field_val_str;
-                        }else if(!strcmp(field_name, "device_desc")){
-                            temp.device_name = field_val_str;
-                        }else if(!strcmp(field_name, "subsystem_desc")){
-                            temp.subsystem_name = field_val_str; 
-                        }else{
-                            // not correct format
-                        }
-                    }else{
-                        // change to regex (all hex or digits)
-                        if(!strcmp(field_name, "vendor")){
-                            temp.vendor = field_val;
-                        }else if (!strcmp(field_name, "device")){
-                            temp.device = field_val;
-                        }else if (!strcmp(field_name, "svendor")){
-                            temp.svendor = field_val;
-                        }else if (!strcmp(field_name, "sdevice")){
-                            temp.sdevice = field_val;
-                        }else{
-                            // not correect format; please check how the input  
-                        }
+            
 
-
-                    }
-
-
-                }// after num of fields
-                ids.fill(&temp, error);
-                memset(&temp, 0, sizeof(temp)); // also init ints -1
-
-
-            }// after num of arrays
-            // Step 1 - open pci.ids and new pci.ids file
+            /*
             std::ofstream ofile(argv[2]);
             auto &f = std::istream("text.h");
             std::istream ifile(argv[1]);
             std::string line;
+            */
+
+            if(!JSONFileParser::parse_json_array_file(optarg,ids,error)){
+                fprintf(stderr, error);
+                return EXIT_FAILURE;
+            }
+            // Step 1 - open pci.ids and new pci.ids file
             // Step 2 - read by line and parse and write to new file
+            /*
             if(ifile.is_open()){
                 while(getline(ifile,line)){
                     // parser dont read anything if # 
@@ -419,13 +365,7 @@ int main(int argc, char **argv){
 
                 }
                 //ifile.close();
-            
-
-
-
-
-
-
+                */
            break; 
         case 'i':
             break;
