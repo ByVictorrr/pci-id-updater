@@ -8,10 +8,14 @@ pci-id-updater: json.o pci-id-updater.o utils.o
 
 
 pci-id-updater.o: pci-id-updater.cpp json.h pci-id-updater.h 
+	$(CC) -g -c pci-id-updater.cpp -o $@
 
 json.o: json.c  json.h
+	$(CC) -g -c json.c -o $@
 
 utils.o: utils.cpp pci-id-updater.h
+	$(CC) -g -c utils.cpp -o  $@
+
 
 %: %.o
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@

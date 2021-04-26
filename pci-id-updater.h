@@ -18,14 +18,14 @@
 #define PCI_ID_NAME_MAX 100
 #define PCI_ID_MAX 0xffff
 
-#define PCI_ID_DEVICE_KEY "device"
 #define PCI_ID_VENDOR_KEY "vendor"
-#define PCI_ID_SDEVICE_KEY "sdevice"
-#define PCI_ID_SVENDOR_KEY "svendor"
+#define PCI_ID_DEVICE_KEY "device"
+#define PCI_ID_SVENDOR_KEY "sub_vendor"
+#define PCI_ID_SDEVICE_KEY "sub_device"
 
 #define PCI_ID_DEVICE_NAME_KEY "device_name"
 #define PCI_ID_VENDOR_NAME_KEY "vendor_name"
-#define PCI_ID_SUBSYSTEM_NAME_KEY "subsystem_name"
+#define PCI_ID_SUBSYSTEM_NAME_KEY "subsys_name"
 
 
 
@@ -155,8 +155,18 @@ class pci_ids{
                 return;
             }
         }
+        /*
+        std::ostream& operater<<(std::ostream &o, const pci_ids &ids){
+        for(vendor_id &v: ids.) 
+        }
+        */
+
+
+        
 
 };
+
+
 
 class VendorIDBuilder{
     private:

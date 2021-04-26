@@ -25,9 +25,9 @@ VendorIDBuilder &VendorIDBuilder::append(char * key, int val){
     return *this;
 }
 vendor_id &VendorIDBuilder::build(){
-    vendor_id v = vendor_id(this->vendor, this->vendor_name);
-    device_id d = device_id(this->device, this->device_name);
-    sub_id s = sub_id(this->svendor, this->sdevice, this->subsystem_name);
+    vendor_id &&v = vendor_id(this->vendor, this->vendor_name);
+    device_id &&d = device_id(this->device, this->device_name);
+    sub_id &&s = sub_id(this->svendor, this->sdevice, this->subsystem_name);
     v.insert(d);
     d.insert(s);
 
@@ -53,6 +53,7 @@ json_value *JSONFileParser::get_json_array_file(const char *json_file, char *err
     int fd, f_len;
     char *file_mm;
     json_value *json_data; //aray
+    json_settings settings = {0};
     if((fd=open(json_file, O_RDONLY)) < 0){
         sprintf(error, "parse_json_array_file: could not open %s\n", json_file);
         return NULL;
@@ -62,7 +63,7 @@ json_value *JSONFileParser::get_json_array_file(const char *json_file, char *err
     }else if((file_mm=(char *)mmap(0, f_len, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED){
         sprintf(error, "parse_json_array_file: Not able to memory map your file submitted\n");
         return NULL;
-    }else if(!(json_data = json_parse_ex(NULL, file_mm, f_len, error))){
+    }else if(!(json_data = json_parse_ex(&settings, file_mm, f_len, error))){
         return NULL;
     }
 
@@ -77,40 +78,54 @@ json_value *JSONFileParser::get_json_array_file(const char *json_file, char *err
 }
 
 bool JSONFileParser::isValidID(int id){
-    return id >= 0 && id<= PCI_ID_MAX;
+    if(id < 0 || id > PCI_ID_MAX)
+        return false;
+    return true;
 }
 
 int JSONFileParser::parse_json_array_file(const char *json_file, pci_ids &ids, char *error){
 
-    // Step 1 - get the json_array
     json_value *json_ids;
-    int int_val;
+    long int int_val;
+    char *end_ptr, *key, *val;
     
+    // Step 1 - read in the json_arr_file into a datastruct
     if(!(json_ids=get_json_array_file(json_file, error))){
         return 0;
     }
-    for(auto id : json_ids->u.array){
-        //json_object_entry * id = json_ids->u.array.values[]
-        if(id->type != json_object){
+    // Step 2 - go through each element in array
+    for(int i = 0; i < json_ids->u.array.length; i++){
+
+        if(json_ids->u.array.values[i]->type != json_object){
             sprintf(error, "parse_json_array_file: an element in the array isnt an object type\n");
             return 0;
         }
         builder.clear();
-        for(auto pair: id->u.object){
-            if(pair.value->type != json_string){
+        for(int j = 0 ; j <json_ids->u.array.values[i]->u.object.length; j++){
+
+            if(json_ids->u.array.values[i]->u.object.values[j].value->type != json_string){
                 sprintf(error, "Parse_json_array_file: a field value in an object value is not a string\n");
                 return 0;
             }
-            char *key = pair.name;
-            char *val = pair.value->u.string.ptr;
-            if(!(int_val=strtol(val, NULL, 16))){ // also what if its 0 how do check if its not numbers
-                if(strcmp(key, PCI_ID_VENDOR_NAME_KEY) && strcmp(key, PCI_ID_DEVICE_NAME_KEY) 
-                && strcmp(key, PCI_ID_SUBSYSTEM_NAME_KEY)){
+            key = json_ids->u.array.values[i]->u.object.values[j].name;
+            val = json_ids->u.array.values[i]->u.object.values[j].value->u.string.ptr;
+            // First validate to see if we have the right key
+            if(strcmp(key, PCI_ID_VENDOR_NAME_KEY) && strcmp(key, PCI_ID_DEVICE_NAME_KEY) 
+                && strcmp(key, PCI_ID_SUBSYSTEM_NAME_KEY) && strcmp(key, PCI_ID_VENDOR_KEY) 
+                && strcmp(key, PCI_ID_DEVICE_KEY) &&  strcmp(key, PCI_ID_SVENDOR_KEY) 
+                && strcmp(key, PCI_ID_SDEVICE_KEY)
+            ){
                     sprintf(error, "iparse_json_array_file: invalid key type\n");
                     continue;
-                }
+            }
+            // Determine whether some value is an ID or name
+            int_val = strtol(val, &end_ptr, 16);
+            if(int_val==0  && end_ptr != val){ // also what if its 0 how do check if its not numbers
+                sprintf(error, "iparse_json_array_file: invalid key type\n");
+                continue;
+            }else if(end_ptr != val)
                 builder.append(key, val);
-
+                continue;
             // See if id is valid
             }else if(!isValidID(int_val)){
                 sprintf(error, "parse_json_array_file: not a valid id value\n");
@@ -119,8 +134,9 @@ int JSONFileParser::parse_json_array_file(const char *json_file, pci_ids &ids, c
             }else if(strcmp(key, PCI_ID_VENDOR_KEY) &&  strcmp(key, PCI_ID_DEVICE_KEY)
                     && strcmp(key, PCI_ID_SVENDOR_KEY) && strcmp(key, PCI_ID_SDEVICE_KEY)){
                 sprintf(error, "parse_json_array_file: not a key\n");
+                continue;
             }
-            builder.append(key,val);
+            builder.append(key,int_val);
         }// after num of fields
         vendor_id &v = builder.build();
         ids.fill(v, error);

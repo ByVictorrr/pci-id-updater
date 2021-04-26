@@ -13,7 +13,7 @@
 #include "json.h"
 #include "pci-id-updater.h"
 
-static const char options[] = "j:";
+static const char options[] = "j:f:";
 static const char help_msg[] = 
 "Usage: pci-id-upator <input-pci.ids-file> <updated-pci.ids-file> <switches>\n"
 "-f <json-format-pci-ids>\n"
